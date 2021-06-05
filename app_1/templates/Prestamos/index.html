@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Prestamos
+{% endblock %}
+
+{% block container %}
+    <!-- emmet: meta lenguaje -->
+    <div class="row">
+        <!-- formulario -->
+        <div class="col-3">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="monto">Monto</label>
+                    <input type="text" name="monto" id="monto" class="form-control" required autofocus>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tasa">Tasa</label>
+                    <input type="text" name="tasa" id="tasa" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="plazo">Plazo</label>
+                    <input type="text" name="plazo" id="plazo" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <input type="submit" class="btn btn-success" value="Calcular">
+                </div>
+            </form>
+        </div>
+         <!-- datos -->
+        <div class="col-9">
+            <h2>Lista de Prestamos </h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Monto</th>
+                        <th>Tasa</th>
+                        <th>Plazo</th>
+                        <th>Cuota</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in prestamos %}
+                    <tr>
+                        <td>{{ p.monto }}</td>
+                        <td>{{ p.tasa }}</td>
+                        <td>{{ p.plazo }}</td>
+                        <td>{{ p.cuota }}</td>
+                        <td>{{ p.total }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endblock %}
